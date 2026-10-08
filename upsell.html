@@ -460,6 +460,23 @@
         if (parsed && typeof parsed === "object") return parsed;
       } catch (_) {}
     }
+    try {
+      const q = new URLSearchParams(window.location.search);
+      const email = q.get("email") || "";
+      const paymentId = q.get("paymentId") || q.get("orderId") || "";
+      if (email || paymentId) {
+        return {
+          email,
+          paymentId,
+          orderId: paymentId,
+          transactionId: q.get("transactionId") || "",
+          username: q.get("username") || "",
+          name: q.get("product") || q.get("name") || "",
+          product: q.get("product") || "",
+          amount: Number(q.get("amount") || 0)
+        };
+      }
+    } catch (_) {}
     return {};
   }
 
