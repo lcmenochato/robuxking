@@ -72,6 +72,7 @@
   ttq.instance=function(t){var e=ttq._i[t]||[];for(var n=0;n<ttq.methods.length;n++) ttq.setAndDefer(e,ttq.methods[n]);return e};
   ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",i=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript";o.async=!0;o.src=r+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
   ttq.load("DALKOK3C77UC8FLKA4OG");
+  ttq.load("DB5PK0RC77UAOLDV7BEG");
   ttq.page();
 }(window, document, "ttq");
 </script>
@@ -263,7 +264,7 @@ async function sendTikTokPurchase(id){
   });
  }catch{}
 }
-async function check(id){if(pollBusy)return;pollBusy=true;try{const r=await fetch(`${STATUS}?paymentId=${encodeURIComponent(id)}`,{cache:'no-store'});const d=await r.json().catch(()=>({}));if(approved(normalize(d))){stop(); const saved=(()=>{try{return JSON.parse(sessionStorage.getItem('kingdom_original_purchase')||'{}')||{};}catch{return {}}})(); const eventId=current?.eventId||saved.eventId||crypto.randomUUID(); const value=Number(current?.amount??saved.amount??current?.price??saved.price??0); const name=current?.name||saved.name||saved.product||'Compra Robux'; trackTikTokEvent('Purchase',{content_type:'product',content_id:name,content_name:name,quantity:1,currency:'BRL',value},eventId); await sendTikTokPurchase(id); showUpsell();}}catch{}finally{pollBusy=false}}
+async function check(id){if(pollBusy)return;pollBusy=true;try{const r=await fetch(`${STATUS}?paymentId=${encodeURIComponent(id)}`,{cache:'no-store'});const d=await r.json().catch(()=>({}));if(approved(normalize(d))){stop(); const saved=(()=>{try{return JSON.parse(sessionStorage.getItem('kingdom_original_purchase')||'{}')||{};}catch{return {}}})(); const eventId=current?.eventId||saved.eventId||crypto.randomUUID(); const value=Number(current?.amount??saved.amount??current?.price??saved.price??0); const name=current?.name||saved.name||saved.product||'Compra Robux'; trackTikTokEvent('Purchase',{content_type:'product',content_id:name,content_name:name,quantity:1,currency:'BRL',value},eventId); try{window.ttq?.instance('DB5PK0RC77UAOLDV7BEG')?.track('CompletePayment',{content_type:'product',content_id:name,content_name:name,quantity:1,currency:'BRL',value},{event_id:eventId});}catch{} await sendTikTokPurchase(id); showUpsell();}}catch{}finally{pollBusy=false}}
 function showUpsell(){
  window.location.href='/upsell.html';
 }
