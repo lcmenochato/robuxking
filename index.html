@@ -109,6 +109,42 @@
 .kr-body{overflow-y:auto;min-height:0;-webkit-overflow-scrolling:touch}.kr-section-title{font-size:18px;margin:20px 0 10px;color:#fff}.kr-pay-option{display:flex;align-items:center;gap:12px;padding:15px;border:1px solid rgba(250,200,0,.25);border-radius:14px;background:#111;margin-bottom:10px}.kr-pay-option.selected{border-color:#fac800}.kr-pay-option.disabled{opacity:.5}.kr-pay-option input{accent-color:#fac800;width:20px;height:20px}.kr-pay-option b{font-size:17px}.kr-muted{font-size:13px;color:#999;margin-top:4px}.kr-upsell-title{font-size:18px;font-weight:900;color:#fac800;margin:22px 0 12px}.kr-upsell{display:flex;align-items:center;gap:12px;background:#111;border:1px solid #333;border-radius:16px;padding:14px 12px;margin-bottom:12px;cursor:pointer;transition:.2s}.kr-upsell.selected{border-color:#fac800;box-shadow:0 0 0 1px rgba(250,200,0,.15)}.kr-check{width:22px;height:22px;accent-color:#fac800;flex:0 0 auto}.kr-upimg{width:96px;height:96px;flex:0 0 96px;border-radius:12px;overflow:hidden;background:#050505;display:flex;align-items:center;justify-content:center}.kr-upimg img{width:100%;height:100%;object-fit:cover}.kr-upbody{min-width:0}.kr-upbadge{display:inline-block;border:1px solid rgba(250,200,0,.5);background:rgba(250,200,0,.12);color:#fac800;border-radius:999px;padding:4px 9px;font-size:10px;font-weight:900;margin-bottom:5px}.kr-upbody h3{font-size:16px;line-height:1.2;margin:0 0 5px}.kr-upbody p{font-size:12px;line-height:1.35;color:#aaa;margin:0 0 6px}.kr-upprice{font-size:17px;font-weight:900}.kr-old{text-decoration:line-through;color:#777;font-size:12px;margin-left:5px;font-weight:600}.kr-summary{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-top:1px solid #333;margin-top:16px;margin-bottom:12px;font-weight:800}.kr-summary strong{font-size:22px;color:#fac800}.kr-custom-section{padding:48px 16px;background:#050505}.kr-custom-box{max-width:760px;margin:0 auto;border:1px solid rgba(250,200,0,.3);background:#0c0c0c;border-radius:20px;padding:24px;box-shadow:0 0 35px rgba(250,200,0,.08)}.kr-custom-title{text-align:center;font-size:28px;font-weight:900;margin:0 0 8px}.kr-custom-sub{text-align:center;color:#aaa;margin:0 0 22px}.kr-custom-row{display:flex;gap:12px;align-items:end}.kr-custom-field{flex:1}.kr-custom-field label{display:block;font-size:13px;font-weight:800;margin-bottom:7px}.kr-custom-field input{width:100%;box-sizing:border-box;background:#050505;border:1px solid #333;color:#fff;border-radius:12px;padding:14px;font-size:17px;outline:none}.kr-custom-field input:focus{border-color:#fac800}.kr-custom-presets{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:0 0 16px}.kr-custom-preset{appearance:none;border:1px solid rgba(250,200,0,.3);background:#111;color:#fff;border-radius:11px;padding:11px 8px;font-size:12px;font-weight:900;cursor:pointer;transition:.2s}.kr-custom-preset:hover,.kr-custom-preset:focus{border-color:#fac800;background:rgba(250,200,0,.08);color:#fac800;outline:none}.kr-custom-price{text-align:center;margin:16px 0;color:#fac800;font-size:24px;font-weight:900}.kr-custom-note{text-align:center;color:#777;font-size:12px;margin-top:10px}@media(max-width:600px){#krCheckoutOverlay{padding-left:8px;padding-right:8px}#krCheckoutModal{max-height:calc(100dvh - 18px);border-radius:16px}.kr-head{padding:16px}.kr-body{padding:16px}.kr-upimg{width:82px;height:82px;flex-basis:82px}.kr-upbody h3{font-size:14px}.kr-upsell{padding:12px 8px;gap:9px}.kr-custom-row{display:block}.kr-custom-field{margin-bottom:12px}.kr-custom-presets{grid-template-columns:repeat(2,minmax(0,1fr))}.kr-custom-title{font-size:24px}}
 .kr-upsell{border-color:rgba(255,126,30,.65);box-shadow:inset 4px 0 #ff861f}.kr-upsell.selected{border-color:#ff861f;box-shadow:0 0 0 1px #ff861f,inset 4px 0 #ff861f}.kr-upbadge{border-color:#ff861f;background:rgba(255,126,30,.13);color:#ff9b38}.kr-upsell-title{color:#ff922c}.kr-check{accent-color:#ff861f}
 .kr-cart-line{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 0;border-bottom:1px solid #333}.kr-cart-info{flex:1;min-width:0}.kr-cart-info b{display:block;font-size:14px}.kr-cart-info small{color:#ffb24a}.kr-cart-qty{display:flex;align-items:center;gap:8px}.kr-cart-qty button,.kr-cart-remove{border:1px solid #555;background:#1c1c1c;color:white;border-radius:8px;min-width:30px;min-height:30px;cursor:pointer}.kr-cart-remove{color:#ff9292}.kr-cart-actions{display:flex;gap:8px;margin:16px 0}.kr-cart-actions button{flex:1;padding:12px;border-radius:10px;cursor:pointer;border:1px solid #ff861f;background:#1a120a;color:#ffae58;font-weight:800}.kr-cart-actions .kr-cart-checkout{background:#ff861f;color:#15100b}.kr-cart-empty{color:#aaa;text-align:center;padding:22px}
+
+/* Visual de checkout com cartões destacados; valores e rotas preservados */
+#krCheckoutModal{width:min(640px,100%);border-color:rgba(219,168,29,.35);border-radius:18px;background:#080808}
+.kr-head{padding:22px 24px;border-bottom:1px solid rgba(224,170,26,.22)}
+.kr-head h2{color:#e9ad19;font-weight:900;font-size:23px}
+.kr-body{padding:24px}
+.kr-form-card,.kr-order-card{border:1px solid rgba(221,170,30,.32);border-radius:18px;padding:18px;background:#0b0b0b;margin-bottom:18px}
+.kr-form-card .kr-field:first-child label{font-size:24px;color:white;font-weight:900;margin-bottom:14px}
+.kr-field label{font-size:15px}
+.kr-field input{background:#101010;border-color:rgba(228,173,38,.45);border-radius:11px}
+.kr-section-title{font-weight:900}
+.kr-pay-option{border:2px solid rgba(228,173,38,.24);background:#15120d}
+.kr-pay-option.selected{border-color:#a57a19;background:#1b160c}
+.kr-pix-symbol{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;border-radius:10px;background:#3b2d09;color:#f2bc27;font-size:24px;font-weight:900}
+.kr-upsell-title{color:#f1b52b;font-size:19px;margin-top:24px}
+.kr-upsell{background:#180f09;border:2px solid #b95513;box-shadow:none;border-radius:18px;padding:16px 12px;gap:12px;align-items:flex-start}
+.kr-upsell.selected{border-color:#ff8a23;box-shadow:0 0 0 1px rgba(255,139,35,.4)}
+.kr-check{accent-color:#ff8a23;margin-top:12px}
+.kr-upimg{width:76px;height:76px;flex-basis:76px;border:1px solid #3d342b;background:#100e0c}
+.kr-upbody{flex:1}
+.kr-upbadge{background:#54280f;border:0;color:#ff952c;font-size:11px;padding:6px 10px}
+.kr-upbody h3{font-size:17px;font-weight:900}
+.kr-upbody p{font-size:13px;color:#aaa}
+.kr-upprice{font-size:22px;color:#ff9028}
+.kr-old{font-size:13px}
+.kr-order-card h3{font-size:22px;font-weight:900;margin:0 0 15px}
+.kr-order-line{display:flex;justify-content:space-between;gap:12px;border:1px solid #574216;border-radius:12px;padding:13px;margin-bottom:14px}
+.kr-order-line strong{color:#16c76a}
+.kr-order-muted{color:#999;font-size:13px}
+.kr-order-row{display:flex;justify-content:space-between;margin:12px 0;color:#bbb}
+.kr-order-row b{color:#fff}
+.kr-order-free{color:#16c76a!important}
+.kr-order-note{background:#201a0c;border:1px solid #7b5d18;border-radius:12px;padding:13px;margin-top:14px;color:#e9c66d;font-size:13px}
+.kr-summary{border-color:#614c1d}
+.kr-btn{background:#e9ae17}
+@media(max-width:600px){.kr-body{padding:16px}.kr-form-card,.kr-order-card{padding:14px}.kr-upimg{width:58px;height:58px;flex-basis:58px}.kr-upsell{gap:8px;padding:12px 8px}.kr-upbody h3{font-size:14px}.kr-upprice{font-size:18px}}
 </style>
 
 
@@ -188,19 +224,18 @@ function renderForm(){
     </div>
   </label>`).join('');
  document.getElementById('krCheckoutModal').innerHTML=`
-  <div class="kr-head"><h2>Finalizar Compra</h2><button class="kr-close" id="krClose">×</button></div>
+  <div class="kr-head"><h2>← Finalizar Compra</h2><button class="kr-close" id="krClose">×</button></div>
   <div class="kr-body">
     <div class="kr-product"><div>${current.name}</div><b>${money(current.price)}</b></div><button type="button" id="krBackCart" style="background:none;border:0;color:#ff9b38;padding:0 0 14px;cursor:pointer">← Voltar ao carrinho</button>
-    <div class="kr-field"><label>Seus Dados</label></div>
+    <div class="kr-form-card"><div class="kr-field"><label>Seus Dados</label></div>
     <div class="kr-field"><label>E-mail</label><input id="krEmail" type="email" placeholder="seu@email.com"><div id="krEmailErr" class="kr-error">Informe um e-mail válido.</div></div>
     <div class="kr-field"><label>Usuário Roblox</label><input id="krUser" placeholder="Seu nome de usuário no Roblox"><div id="krUserErr" class="kr-error">Informe seu usuário Roblox.</div></div>
     <h3 class="kr-section-title">Método de Pagamento</h3>
-    <div class="kr-pay-option selected"><input type="radio" checked> <div><b>PIX</b><div class="kr-muted">Pagamento instantâneo</div></div></div>
+    <div class="kr-pay-option selected"><input type="radio" checked> <span class="kr-pix-symbol" aria-hidden="true">❖</span><div><b>PIX</b><div class="kr-muted">Pagamento instantâneo</div></div></div>
     <div class="kr-pay-option disabled"><input type="radio" disabled> <div><b>Cartão de Crédito/Débito</b><div class="kr-muted">Em breve</div></div></div>
     <div class="kr-upsell-title">⚡ OFERTAS EXCLUSIVAS</div>
     <div>${ups}</div>
-    <div class="kr-summary"><span>Total do pedido</span><strong id="krPayAmount">${money(current.price)}</strong></div>
-    <button class="kr-btn" id="krGenerate">Pagar <span id="krPayAmountButton">${money(current.price)}</span></button>
+    <button class="kr-btn" id="krGenerate">Pagar <span id="krPayAmountButton">${money(current.price)}</span></button></div><div class="kr-order-card"><h3>Resumo do Pedido</h3><div class="kr-order-line"><div><b>${current.name}</b><div class="kr-order-muted">Pacotes selecionados no carrinho</div></div><strong>${money(current.price)}</strong></div><div class="kr-order-row"><span>Subtotal dos produtos</span><b>${money(current.price)}</b></div><div class="kr-order-row"><span>Taxa de processamento</span><b class="kr-order-free">Grátis</b></div><div class="kr-summary"><span>Total do pedido</span><strong id="krPayAmount">${money(current.price)}</strong></div><div class="kr-order-note">❖ Pagamento PIX — após gerar o Pix, você terá 30 minutos para pagar.</div></div>
   </div>`;
  document.getElementById('krClose').onclick=close;
  document.getElementById('krBackCart').onclick=renderCart;
