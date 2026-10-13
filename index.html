@@ -145,6 +145,36 @@
 .kr-summary{border-color:#614c1d}
 .kr-btn{background:#e9ae17}
 @media(max-width:600px){.kr-body{padding:16px}.kr-form-card,.kr-order-card{padding:14px}.kr-upimg{width:58px;height:58px;flex-basis:58px}.kr-upsell{gap:8px;padding:12px 8px}.kr-upbody h3{font-size:14px}.kr-upprice{font-size:18px}}
+
+/* Refinamento clean inspirado no vídeo: menos sombras, bordas discretas e espaços compactos */
+#krCheckoutOverlay{background:rgba(0,0,0,.88);backdrop-filter:blur(3px)}
+#krCheckoutModal{background:#090909;border:1px solid #332b16;box-shadow:0 12px 40px rgba(0,0,0,.5);border-radius:14px}
+.kr-head{padding:17px 19px;background:#090909;border-bottom:1px solid #2c2414}
+.kr-head h2{font-size:20px;color:#e4ae24}
+.kr-body{padding:16px}
+.kr-form-card,.kr-order-card{border:1px solid #3b311b;border-radius:13px;background:#0d0d0d;padding:16px;margin-bottom:14px}
+.kr-form-card .kr-field:first-child label{font-size:21px;margin-bottom:12px}
+.kr-field{margin-bottom:12px}.kr-field label{font-size:13px;margin-bottom:6px}
+.kr-field input{padding:12px;background:#101010;border:1px solid #57431b;border-radius:8px}
+.kr-section-title{font-size:16px;margin:17px 0 10px}
+.kr-pay-option{padding:11px 12px;border:1px solid #49391b;border-radius:11px;margin-bottom:9px;background:#13110d}
+.kr-pay-option.selected{border:1px solid #88691f;background:#19150d}
+.kr-pix-symbol{width:31px;height:31px;font-size:20px;border-radius:8px}
+.kr-upsell-title{font-size:16px;margin:19px 0 11px;color:#e7b42b}
+.kr-upsell{background:#160e0a;border:1.5px solid #a84b16;border-radius:12px;box-shadow:none;padding:12px 10px;margin-bottom:10px;gap:10px}
+.kr-upsell.selected{border-color:#f18325;box-shadow:none;background:#1e120b}
+.kr-upimg{width:64px;height:64px;flex-basis:64px;border-radius:9px}
+.kr-upbody h3{font-size:15px;line-height:1.3;margin-bottom:4px}
+.kr-upbody p{font-size:12px;line-height:1.4;margin-bottom:7px}
+.kr-upbadge{font-size:10px;padding:4px 8px;border-radius:20px;background:#48240f;color:#f68e35;margin-bottom:5px}
+.kr-upprice{font-size:18px;color:#ff912f}
+.kr-check{width:18px;height:18px;margin-top:10px}
+.kr-btn{padding:13px;border-radius:10px;box-shadow:none;background:#e7af18}
+.kr-order-card h3{font-size:20px}
+.kr-order-line{padding:11px;border-radius:9px}
+.kr-order-note{padding:11px;border-radius:9px}
+.kr-product{background:#111;border-color:#493a1b}
+@media(max-width:600px){#krCheckoutOverlay{padding:6px}#krCheckoutModal{max-height:calc(100dvh - 12px)}.kr-body{padding:12px}.kr-form-card,.kr-order-card{padding:12px}.kr-upsell{padding:10px 8px;gap:8px}.kr-upimg{width:52px;height:52px;flex-basis:52px}.kr-upbody h3{font-size:13px}.kr-upprice{font-size:17px}}
 </style>
 
 
