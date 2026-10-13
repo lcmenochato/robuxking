@@ -224,6 +224,7 @@
 #krCheckoutModal:has(.kr-cart-actions) .kr-summary{margin-top:22px;padding:20px 0;font-size:17px}
 #krCheckoutModal:has(.kr-cart-actions) .kr-summary strong{color:#f5c52a;font-size:25px}
 @media(max-width:600px){#krCheckoutModal:has(.kr-cart-actions){width:100%;min-height:350px}#krCheckoutModal:has(.kr-cart-actions) .kr-body{padding:18px}#krCheckoutModal:has(.kr-cart-actions) .kr-head{padding:22px 18px}.kr-cart-actions{gap:8px}.kr-cart-actions button{font-size:13px;padding:15px 8px}}
+.kr-upbadges{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}.kr-upbadge{display:inline-flex;align-items:center;border-radius:999px;padding:6px 11px;background:#57270d;color:#ff9b32;border:0;font-size:11px;font-weight:900;letter-spacing:.15px}.kr-offbadge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 11px;background:#4a1719;color:#ff747b;font-size:12px;font-weight:900}.kr-upbody h3{font-size:17px;font-weight:900;letter-spacing:-.35px}.kr-upbody p{font-size:13px;line-height:1.5;color:#a8a8a8;margin:6px 0 13px}.kr-upprice{color:#ff9028;font-size:22px;font-weight:900}.kr-old{color:#858585;font-size:14px;margin-left:9px}@media(max-width:600px){.kr-upbody h3{font-size:15px}.kr-upprice{font-size:19px}.kr-upbadge,.kr-offbadge{font-size:10px;padding:5px 8px}}
 </style>
 
 
@@ -240,9 +241,9 @@ const CUSTOM_RATE=0.03; // R$ 0,030 por Robux; pacotes fechados mantêm os preç
 
 
 const checkoutUpsells=[
- {name:'BÔNUS +950 ROBUX',desc:'Adicione mais 950 Robux ao seu pedido.',price:7.90,old:null,badge:'OFERTA ESPECIAL',icon:"<img src='https://i.postimg.cc/tCZvSzqM/776ad51c7472c950fa0e75adddf196b1.jpg' alt='Moeda Robux'>"},
- {name:'Skin Exclusiva (Korblox)',desc:'Adicione uma skin especial ao seu pedido.',price:12.90,old:19.90,badge:'OFERTA LIMITADA',icon:"<img src='https://i.postimg.cc/D0mpKrqM/6dd20a728296e99834acf2ffef494be3.jpg' alt='Korblox'>"},
- {name:'Headless Horseman',desc:'Adicione Headless Horseman ao seu pedido.',price:15.90,old:25.00,badge:'EXCLUSIVO',icon:"<img src='https://i.postimg.cc/xTwxWbqT/16cfefa7f0e1705b468a02d9c551a17a.jpg' alt='Headless Horseman'>"}
+ {name:'BÔNUS +950 ROBUX',desc:'Adicione 950 Robux extras ao seu pedido por um preço especial.',price:7.90,old:null,badge:'OFERTA EXCLUSIVA',icon:"<img src='https://i.postimg.cc/tCZvSzqM/776ad51c7472c950fa0e75adddf196b1.jpg' alt='Moeda Robux'>"},
+ {name:'Skin Exclusiva (Korblox)',desc:'Adicione a skin Korblox ao seu pedido.',price:17.90,old:19.90,badge:'OFERTA ESPECIAL',icon:"<img src='https://i.postimg.cc/D0mpKrqM/6dd20a728296e99834acf2ffef494be3.jpg' alt='Korblox'>"},
+ {name:'Headless Horseman',desc:'Adicione o item Headless Horseman ao seu pedido.',price:22.90,old:25.00,badge:'OFERTA EXCLUSIVA',icon:"<img src='https://i.postimg.cc/xTwxWbqT/16cfefa7f0e1705b468a02d9c551a17a.jpg' alt='Headless Horseman'>"}
 ];
 
 let current=null, timer=null, poll=null, pollBusy=false, selectedUpsells=[];
@@ -298,7 +299,7 @@ function renderForm(){
     <input id="krCheck${i}" class="kr-check" type="checkbox" onchange="toggleCheckoutUpsell(${i},this.checked)">
     <div class="kr-upimg">${u.icon}</div>
     <div class="kr-upbody">
-      <div class="kr-upbadges"><span class="kr-upbadge">${u.badge}</span></div>
+      <div class="kr-upbadges"><span class="kr-upbadge">${u.badge}</span>${u.old != null && u.old > u.price ? `<span class="kr-offbadge">-${Math.round((1-u.price/u.old)*100)}%</span>` : ""}</div>
       <h3>${u.name}</h3>
       <p>${u.desc}</p>
       <div class="kr-upprice">${money(u.price)} ${u.old != null ? `<span class="kr-old">${money(u.old)}</span>` : ""}</div>
