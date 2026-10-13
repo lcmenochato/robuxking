@@ -194,6 +194,36 @@
 .kr-cart-footer .kr-btn{font-size:13px}.kr-clear{display:block;margin:10px auto 0;background:none;border:0;color:#888;cursor:pointer;font-size:12px}
 .kr-back-link{border:0;background:none;color:#d9a52d;font-size:12px;margin:0 0 12px;padding:0;cursor:pointer}
 .kr-order-row{font-size:13px}
+
+/* Refinamento visual: tipografia, brilho e carrinho amarelo */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+#krCheckoutOverlay,#krCheckoutModal,#krCheckoutModal button,#krCheckoutModal input{font-family:Inter,system-ui,-apple-system,sans-serif}
+#krCheckoutModal{width:min(680px,100%);box-shadow:0 12px 65px rgba(235,174,20,.15)}
+.kr-head h2{font-size:clamp(22px,4.8vw,29px);letter-spacing:-.7px;text-shadow:0 0 16px rgba(250,192,44,.23)}
+.kr-section-title,.kr-upsell-title,.kr-order-card h3{letter-spacing:-.45px;text-shadow:0 0 13px rgba(255,210,120,.14)}
+.kr-form-card{padding:22px;background:#0d0d0d}
+.kr-upbody h3{letter-spacing:-.3px;line-height:1.32;color:#fff}
+.kr-upbody p{line-height:1.55}
+.kr-upprice{font-weight:900;text-shadow:0 0 13px rgba(255,138,38,.15)}
+.kr-upbadge{font-weight:900;letter-spacing:.15px}
+.kr-cart-line{padding:19px 0;gap:12px}
+.kr-cart-info b{font-size:16px;font-weight:900;letter-spacing:-.35px}
+.kr-cart-info small{color:#f2bd25;font-size:14px;font-weight:800}
+.kr-cart-qty{gap:10px}
+.kr-cart-qty button,.kr-cart-remove{min-width:38px;min-height:38px;border-radius:10px;font-size:18px}
+.kr-cart-actions{gap:12px;margin:24px 0 6px}
+.kr-cart-actions button{padding:16px 12px;border-radius:12px;border:1px solid #dba71b;background:#19160c;color:#f9c52c;font-size:14px;font-weight:900}
+.kr-cart-actions .kr-cart-checkout{background:linear-gradient(135deg,#ffe33e,#e9ab11);border-color:#e9b52a;color:#14100a;box-shadow:0 7px 23px rgba(255,194,25,.18)}
+.kr-cart-actions .kr-cart-checkout:hover{filter:brightness(1.08)}
+.kr-cart-actions button:first-child:hover{background:#2b230c}
+.kr-cart-empty{font-size:15px;padding:32px 12px}
+#krCheckoutModal:has(.kr-cart-actions){width:min(680px,100%);min-height:330px}
+#krCheckoutModal:has(.kr-cart-actions) .kr-head{padding:24px 26px}
+#krCheckoutModal:has(.kr-cart-actions) .kr-head h2{color:#f4c42c;font-size:25px}
+#krCheckoutModal:has(.kr-cart-actions) .kr-body{padding:22px 26px}
+#krCheckoutModal:has(.kr-cart-actions) .kr-summary{margin-top:22px;padding:20px 0;font-size:17px}
+#krCheckoutModal:has(.kr-cart-actions) .kr-summary strong{color:#f5c52a;font-size:25px}
+@media(max-width:600px){#krCheckoutModal:has(.kr-cart-actions){width:100%;min-height:350px}#krCheckoutModal:has(.kr-cart-actions) .kr-body{padding:18px}#krCheckoutModal:has(.kr-cart-actions) .kr-head{padding:22px 18px}.kr-cart-actions{gap:8px}.kr-cart-actions button{font-size:13px;padding:15px 8px}}
 </style>
 
 
