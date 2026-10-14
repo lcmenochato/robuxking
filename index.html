@@ -264,6 +264,24 @@ body [data-editor-id="el-4ik57if"]{font-size:clamp(32px,6vw,68px)!important;line
 .kr-featured-art span{font-size:80px;line-height:1}.kr-featured-art strong{font-size:48px;font-weight:900;line-height:1.1}.kr-featured-art small{font-size:16px;font-weight:800;letter-spacing:3px}
 .kr-store-note{font-size:12px;line-height:1.5;color:#b7b7b7;padding:12px;border:1px solid #413719;border-radius:10px;background:#1a170f;margin:8px 0 15px}
 @media(max-width:640px){.kr-featured{padding:18px 12px}.kr-featured-inner{grid-template-columns:1fr;padding:22px 18px;gap:16px}.kr-featured-art{min-height:125px}.kr-featured-art span{font-size:38px}.kr-featured-art strong{font-size:29px}.kr-featured-art small{font-size:10px}.kr-featured button{width:100%}}
+/* Roleta promocional exibida após adicionar ao carrinho */
+#krWheelOverlay{position:fixed;inset:0;z-index:100001;background:rgba(0,0,0,.88);backdrop-filter:blur(9px);display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+#krWheelOverlay.kr-wheel-open{display:flex}
+.kr-wheel-dialog{position:relative;width:min(440px,100%);max-height:calc(100dvh - 30px);overflow-y:auto;border:2px solid #e9b92c;border-radius:22px;background:radial-gradient(circle at 50% 15%,#3a2a0b,#0e0d0b 67%);color:#fff;text-align:center;padding:25px 20px;box-shadow:0 0 65px #f0b92330;font-family:Inter,system-ui,sans-serif}
+.kr-wheel-close{position:absolute;top:10px;right:12px;background:none;border:0;color:#eee;font-size:29px;cursor:pointer}
+.kr-wheel-kicker{display:inline-block;background:#eab82d;color:#1d1500;padding:6px 13px;border-radius:20px;font-size:11px;font-weight:900}
+.kr-wheel-dialog h2{font-size:clamp(23px,5vw,30px);font-weight:900;color:#ffcf37;margin:12px 0 5px}
+.kr-wheel-dialog>p{font-size:13px;color:#e3d8b8}
+.kr-wheel-wrap{width:min(280px,70vw);aspect-ratio:1;position:relative;margin:20px auto}
+.kr-wheel-disk{position:absolute;inset:0;border-radius:50%;border:8px solid #f6ca42;background:conic-gradient(#e7a91d 0 90deg,#231d13 90deg 180deg,#ffd451 180deg 270deg,#41300f 270deg 360deg);box-shadow:0 0 25px #edb92544;transition:transform 4.2s cubic-bezier(.11,.7,.12,1)}
+.kr-wheel-disk span{position:absolute;font-size:19px;font-weight:900;text-shadow:0 2px 3px #0009}.kr-w1{top:24%;right:16%}.kr-w2{bottom:23%;right:14%}.kr-w3{bottom:23%;left:14%}.kr-w4{top:24%;left:16%}
+.kr-wheel-pointer{position:absolute;top:-12px;left:calc(50% - 15px);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:28px solid #fff;z-index:3}
+.kr-wheel-hub{position:absolute;inset:0;margin:auto;width:58px;height:58px;border-radius:50%;background:#0d0d0d;border:5px solid #f6ca42;color:#ffd13c;display:grid;place-items:center;font-size:28px;font-weight:900}
+.kr-wheel-spin{width:100%;padding:14px;background:linear-gradient(110deg,#ffe16c,#e5a919);border:0;border-radius:12px;color:#201601;font-weight:900;font-size:16px;cursor:pointer}
+.kr-wheel-spin:disabled{opacity:.75;cursor:default}
+.kr-wheel-result{min-height:24px;color:#ffd03d!important;font-weight:900!important;margin:10px 0!important}
+.kr-wheel-dialog>small{display:block;color:#c8c1b2;font-size:11px;line-height:1.5}
+.kr-wheel-continue{margin-top:12px;border:1px solid #6d5b30;background:#201a0e;color:#f9d05a;padding:11px 14px;border-radius:10px;width:100%;font-weight:800;cursor:pointer}
 </style>
 
 
@@ -287,9 +305,11 @@ const checkoutUpsells=[
 
 let current=null, timer=null, poll=null, pollBusy=false, selectedUpsells=[];
 const cart=[];
+let wheelBonus=0,wheelShown=false,wheelSpinning=false;
 function cartAmount(){return Number(cart.reduce((sum,item)=>sum+item.price*item.qty,0).toFixed(2));}
-function cartName(){return cart.map(item=>item.qty+'x '+item.name).join(' + ');}
-function addCart(name,price,customRobux){const found=cart.find(item=>item.name===name);if(found)found.qty++;else cart.push({name,price,qty:1,customRobux:customRobux||0});renderCart();}
+function cartName(){return cart.map(item=>item.qty+'x '+item.name).join(' + ')+(wheelBonus?' + BÔNUS PROMOCIONAL '+wheelBonus+' ROBUX (após pagamento)':'');}
+function addCart(name,price,customRobux){const found=cart.find(item=>item.name===name);if(found)found.qty++;else cart.push({name,price,qty:1,customRobux:customRobux||0});renderCart();if(!wheelShown){wheelShown=true;showCartWheel();}}
+function showCartWheel(){const overlay=document.getElementById('krWheelOverlay');if(overlay)overlay.classList.add('kr-wheel-open');}
 function cartQty(i,delta){if(!cart[i])return;cart[i].qty+=delta;if(cart[i].qty<=0)cart.splice(i,1);renderCart();}
 function removeCart(i){cart.splice(i,1);renderCart();}
 function openCart(){document.getElementById('krCheckoutOverlay').classList.add('kr-open','kr-cart-mode');renderCart();}
@@ -451,6 +471,12 @@ function openCustom(){
 function setup(){
  trackTikTokEvent('ViewContent',{content_type:'product'});
  document.body.insertAdjacentHTML('beforeend',`<div id="krCheckoutOverlay"><div id="krCheckoutModal"></div></div>`);
+ document.body.insertAdjacentHTML('beforeend',`<div id="krWheelOverlay" role="dialog" aria-modal="true" aria-labelledby="krWheelTitle"><div class="kr-wheel-dialog"><button type="button" class="kr-wheel-close" id="krWheelClose" aria-label="Fechar">×</button><span class="kr-wheel-kicker">🎁 PRESENTE ESPECIAL</span><h2 id="krWheelTitle">GIRE E GANHE ROBUX!</h2><p>Você desbloqueou uma chance de ganhar Robux extras.</p><div class="kr-wheel-wrap"><div class="kr-wheel-pointer"></div><div id="krWheelDisk" class="kr-wheel-disk"><span class="kr-w1">+50</span><span class="kr-w2">+100</span><span class="kr-w3">+200</span><span class="kr-w4">+275</span></div><div class="kr-wheel-hub">⬡</div></div><button id="krWheelSpin" type="button" class="kr-wheel-spin">GIRAR ROLETA</button><p id="krWheelResult" class="kr-wheel-result" role="status"></p><small>O bônus sorteado será incluído no pedido e só será recebido após a confirmação do pagamento.</small><button id="krWheelContinue" type="button" class="kr-wheel-continue">Continuar para o carrinho →</button></div></div>`);
+ const closeWheel=()=>document.getElementById('krWheelOverlay').classList.remove('kr-wheel-open');
+ document.getElementById('krWheelClose').onclick=closeWheel;
+ document.getElementById('krWheelContinue').onclick=closeWheel;
+ document.getElementById('krWheelSpin').onclick=()=>{if(wheelSpinning||wheelBonus)return;wheelSpinning=true;const prizes=[50,100,200,275],idx=Math.floor(Math.random()*4);const rotation=1800+315-idx*90;const disk=document.getElementById('krWheelDisk');disk.style.transform='rotate('+rotation+'deg)';const btn=document.getElementById('krWheelSpin');btn.disabled=true;btn.textContent='GIRANDO...';setTimeout(()=>{wheelBonus=prizes[idx];document.getElementById('krWheelResult').textContent='🎉 Você ganhou +'+wheelBonus+' Robux!';btn.textContent='BÔNUS ADICIONADO';wheelSpinning=false;renderCart();},4200);};
+
  const featuredButton=document.getElementById('krFeaturedAdd');if(featuredButton)featuredButton.addEventListener('click',()=>open(['3600 Robux — Promoção de Destaque',32.00]));
  const cartButton=document.querySelector('button[data-slot="sheet-trigger"]');if(cartButton){cartButton.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openCart();},true);}
  const btns=[...document.querySelectorAll('button')].filter(b=>b.textContent.includes('Adicionar ao'));
