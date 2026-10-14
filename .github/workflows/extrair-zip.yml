@@ -1,0 +1,71 @@
+name: Extrair ZIP do site
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '*.zip'
+      - '**/*.zip'
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Extrair ZIP e substituir arquivos do site
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os, glob, zipfile, shutil, pathlib
+          zips = sorted(glob.glob("*.zip"), key=os.path.getmtime, reverse=True)
+          if not zips:
+              raise SystemExit("Nenhum ZIP encontrado na raiz do repositorio")
+          preferred = [p for p in zips if "robuxking-clean_v2" in p.lower()]
+          source = preferred[0] if preferred else zips[0]
+          print("Usando:", source)
+          with zipfile.ZipFile(source) as z:
+              names = [n for n in z.namelist() if not n.endswith("/") and not n.startswith("__MACOSX/")]
+              if not names: raise SystemExit("ZIP vazio")
+              common = os.path.commonpath(names)
+              prefix = common.split("/")[0] + "/" if all("/" in n and n.startswith(common.split("/")[0]+"/") for n in names) else ""
+              extracted = 0
+              for n in names:
+                  rel = n[len(prefix):] if n.startswith(prefix) else n
+                  dest = pathlib.PurePosixPath(rel)
+                  if not rel or dest.is_absolute() or ".." in dest.parts or dest.parts[0] in (".git", ".github"):
+                      continue
+                  target = pathlib.Path(rel)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  # Old site files are cleared in the following step before extracting.
+              for p in pathlib.Path(".").iterdir():
+                  if p.name in (".git", ".github") or p.suffix.lower() == ".zip":
+                      continue
+                  if p.is_dir(): shutil.rmtree(p)
+                  else: p.unlink()
+              for n in names:
+                  rel = n[len(prefix):] if n.startswith(prefix) else n
+                  dest = pathlib.PurePosixPath(rel)
+                  if not rel or dest.is_absolute() or ".." in dest.parts or dest.parts[0] in (".git", ".github"):
+                      continue
+                  target = pathlib.Path(rel)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(z.read(n))
+                  extracted += 1
+              if not extracted: raise SystemExit("Nenhum arquivo extraido")
+              print("Arquivos extraidos:", extracted)
+          PY
+      - name: Publicar alteracoes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteracao"
+          else
+            git commit -m "Extrair ZIP e atualizar site Robuxking"
+            git push
+          fi
