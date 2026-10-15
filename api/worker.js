@@ -30,10 +30,10 @@
  * TIKTOK_TEST_EVENT_CODE (opcional)
  *
  * PIXEL TIKTOK:
- * DAQM5MJC77UFPT804HM0
+ * DB73PH3C77UFK409704G
  */
 
-const TIKTOK_PIXEL_ID = "DAQM5MJC77UFPT804HM0";
+const TIKTOK_PIXEL_ID = "DB73PH3C77UFK409704G";
 
 const TIKTOK_EVENTS_URL =
   "https://business-api.tiktok.com/open_api/v1.2/pixel/track/";
