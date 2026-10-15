@@ -292,3 +292,28 @@ body #produtos [data-slot="card"] .kr-discount-badge{background:#f5b21b!importan
 .kr-feature-price{font-size:clamp(26px,6.4vw,40px)!important;white-space:nowrap!important;color:#3ff25c!important;text-shadow:0 0 10px #16e13d99!important}
 .kr-feature-buy{width:calc(100% - 28px)!important;margin:0 14px!important;border-radius:13px!important;background:#ffca21!important;min-height:58px!important;box-shadow:0 0 12px #e9b01a66!important}
 @media(max-width:480px){.kr-feature-frame{padding:12px!important}.kr-feature-art{height:290px!important}.kr-feature-art-title strong{font-size:clamp(65px,15vw,85px)!important}.kr-feature-info{margin:0 9px 10px!important;padding:10px 7px!important}.kr-feature-price{font-size:clamp(24px,6.1vw,34px)!important}.kr-feature-buy{width:calc(100% - 18px)!important;margin:0 9px!important}}
+
+/* Oferta especial com estrutura idêntica aos cards da vitrine */
+.kr-feature-frame{max-width:510px!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+.kr-feature-card{padding:0 0 17px!important;border:3px solid #c79b25!important;border-radius:25px!important;background:#050505!important;overflow:hidden!important;box-shadow:0 0 0 2px #765a1b,0 0 16px #c7972544!important}
+.kr-feature-art{height:clamp(390px,85vw,610px)!important;border-radius:21px 21px 0 0!important}
+.kr-feature-art img{object-fit:cover!important}
+.kr-feature-art-shade{background:linear-gradient(180deg,#0004,#0002 45%,#000 100%)!important}
+.kr-feature-art-title{justify-content:center!important;padding-top:0!important}
+.kr-feature-art-title small{font-size:clamp(20px,5vw,29px)!important}
+.kr-feature-art-title strong{font-size:clamp(65px,15vw,110px)!important}
+.kr-feature-art-title b{color:#eee!important;font-weight:400!important;letter-spacing:8px!important;font-size:clamp(20px,5vw,29px)!important}
+.kr-feature-info{display:block!important;margin:0!important;padding:25px 23px 12px!important;background:#050505!important;border:0!important;border-radius:0!important;text-align:left!important}
+.kr-feature-identity{display:flex;align-items:center;gap:15px;margin-bottom:20px}
+.kr-feature-icon{display:grid;place-items:center;flex:0 0 58px;width:58px;height:58px;background:#1c1609;border:1px solid #a57b23;border-radius:14px;color:#fff;font-size:42px}
+.kr-feature-quantity{display:flex!important;flex-direction:column!important;padding:0!important}
+.kr-feature-quantity strong{font-size:33px!important;color:#edb724!important}
+.kr-feature-quantity span{font-size:18px!important;color:#aaa!important;font-weight:400!important}
+.kr-feature-check{margin-left:auto;width:51px;height:51px;border:2px solid #075c2e;border-radius:50%;display:grid;place-items:center;color:#20bb58;background:#041b10;font-size:30px}
+.kr-feature-stars{font-size:27px!important;color:#e7af19!important;letter-spacing:1px;margin:0 0 17px!important}
+.kr-feature-stars span{font-size:17px;color:#888;vertical-align:middle}
+.kr-feature-price{font-size:clamp(38px,9vw,51px)!important;color:#09c951!important;text-shadow:none!important;line-height:1.2}
+.kr-feature-old-price{font-size:22px;color:#858585;text-decoration:line-through;margin:12px 0}
+.kr-feature-discount{display:inline-block;background:#f3b927;color:#070707;border-radius:24px;padding:5px 14px;font-size:17px;font-weight:900;margin:5px 0 15px}
+.kr-feature-buy{min-height:66px!important;width:calc(100% - 46px)!important;margin:0 23px!important;font-size:clamp(17px,4.5vw,22px)!important}
+@media(max-width:480px){.kr-feature-art{height:clamp(360px,98vw,490px)!important}.kr-feature-info{padding:22px 19px 10px!important}.kr-feature-buy{width:calc(100% - 38px)!important;margin:0 19px!important}}
