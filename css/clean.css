@@ -211,3 +211,25 @@ a[href*="wa.me"],a[href*="api.whatsapp.com"],a[href*="whatsapp.com"],[class*="wh
 @media(prefers-reduced-motion:reduce){
   #produtos [data-slot="card"],#produtos [data-slot="card"] .animate-shine{animation:none!important}
 }
+
+/* Vitrine Kingdom — cards premium inspirados no vídeo enviado */
+@keyframes krGoldPulse{0%,100%{box-shadow:0 0 0 1px #d6a61866,0 0 12px #d7a51130,inset 0 0 0 1px #f6d45520}50%{box-shadow:0 0 0 1px #ffda51aa,0 0 24px #f1bd3480,inset 0 0 0 1px #ffdf5a40}}
+@keyframes krCardRise{from{opacity:.65;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+body #produtos .grid{gap:16px!important}
+body #produtos [data-slot="card"]{background:#080808!important;border:2px solid #b88d1b!important;border-radius:17px!important;overflow:hidden!important;min-height:510px!important;gap:0!important;animation:krCardRise .65s ease both,krGoldPulse 3s ease-in-out infinite!important;transition:transform .25s ease,border-color .25s ease!important}
+body #produtos [data-slot="card"]:hover{transform:translateY(-5px)!important;border-color:#ffe06c!important;box-shadow:0 0 26px #e9b62c85!important}
+body #produtos [data-slot="card"] > div:first-child{aspect-ratio:unset!important;height:310px!important;min-height:310px!important;border-radius:15px 15px 0 0!important;overflow:hidden!important}
+body #produtos [data-slot="card"] > div:first-child img{width:100%!important;height:100%!important;object-fit:cover!important}
+body #produtos [data-slot="card"] button{background:#e6af17!important;color:#080808!important;border-radius:11px!important;min-height:48px!important;font-weight:850!important;box-shadow:0 4px 16px #e3ad2055!important;transition:filter .2s,transform .2s!important}
+body #produtos [data-slot="card"] button:hover{filter:brightness(1.12)!important;transform:translateY(-2px)!important}
+body #produtos [data-slot="card"]{font-family:Montserrat,Inter,Arial,sans-serif!important}
+body #produtos [data-slot="card"] .font-bold,body #produtos [data-slot="card"] .font-black{font-weight:900!important}
+body #produtos [data-slot="card"] .kr-discount-badge{background:#f5b21b!important;color:#080808!important;border-radius:8px!important;font-weight:850!important}
+@media(max-width:640px){
+ body #produtos .grid{gap:12px!important}
+ body #produtos [data-slot="card"]{min-height:440px!important;border-radius:15px!important}
+ body #produtos [data-slot="card"] > div:first-child{height:250px!important;min-height:250px!important}
+ body #produtos [data-slot="card"] button{min-height:43px!important;font-size:12px!important}
+}
+@media(max-width:380px){body #produtos [data-slot="card"]{min-height:415px!important}body #produtos [data-slot="card"] > div:first-child{height:225px!important;min-height:225px!important}}
+@media(prefers-reduced-motion:reduce){body #produtos [data-slot="card"]{animation:none!important}}
