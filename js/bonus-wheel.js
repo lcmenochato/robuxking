@@ -15,7 +15,7 @@
   open.remove();
   const offer=document.createElement('dialog');
   offer.className='kr-offer-dialog';
-  offer.innerHTML='<button type="button" class="kr-offer-close" aria-label="Fechar">×</button><div class="kr-offer-logo">ROBUX <small>EMPIRE</small></div><h2>Roleta de bônus</h2><p>Você desbloqueou uma chance na roleta! Quer girar agora e ganhar Robux extra grátis na compra?</p><button type="button" class="kr-offer-yes">Quero girar a roleta</button><button type="button" class="kr-offer-no">Agora não</button>';
+  offer.innerHTML='<button type="button" class="kr-offer-close" aria-label="Fechar">×</button><img class="kr-offer-brand" src="./images/kingdom-logo-corrigida.png" alt="Robux Kingdom"><h2>Roleta de bônus</h2><p>Você desbloqueou uma chance na roleta! Quer girar agora e ganhar Robux extra grátis na compra?</p><button type="button" class="kr-offer-yes">Quero girar a roleta</button><button type="button" class="kr-offer-no">Agora não</button>';
   document.body.appendChild(offer);
   let pending=null, bypass=false, offered=false, bonus=0;
   function proceed(){const b=pending;pending=null;if(b){bypass=true;b.click();bypass=false;}}
@@ -38,7 +38,7 @@
   dialog.addEventListener('close',()=>{if(pending)proceed();});
   function addBonusToCart(n){
     const cartDialog=document.getElementById('krCheckoutModal');
-    // O bônus aparece no carrinho como item gratuito; a liberação real depende do sistema de entrega.
+    // Exibe o bônus no carrinho; a entrega deve ser confirmada pelo sistema responsável.
     const show=()=>{if(!cartDialog)return;const body=cartDialog.querySelector('.kr-cart-body');if(body&&!body.querySelector('.kr-free-bonus'))body.insertAdjacentHTML('beforeend','<div class="kr-free-bonus">🎁 BÔNUS DA ROLETA: +'+n+' Robux <strong>GRÁTIS</strong></div>');};
     const observer=new MutationObserver(show);if(cartDialog)observer.observe(cartDialog,{childList:true,subtree:false});
     show();
@@ -80,8 +80,8 @@
   }
   let spinning = false, rotation = 0;
   const showPrize = index => {
-    result.textContent = 'Bônus sorteado: +' + prizes[index] + ' Robux';
-    cartValue.textContent = '+' + prizes[index] + ' Robux · R$ 0,00';
+    result.textContent = 'Você ganhou +' + prizes[index] + ' Robux de bônus!';
+    cartValue.textContent = '+' + prizes[index] + ' Robux · Grátis';
     preview.hidden = false;
     button.querySelector('span').textContent = 'Bônus sorteado';
     button.hidden=true;continueButton.hidden=false;addBonusToCart(prizes[index]);
