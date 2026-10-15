@@ -82,3 +82,27 @@ body #krCheckoutModal .kr-btn { background: var(--clean-accent); color: var(--cl
  html { scroll-behavior: auto; }
  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Roleta premium: mantém o checkout e a integração de pagamento intactos. */
+a[href*="wa.me"],a[href*="api.whatsapp.com"],a[href*="whatsapp.com"],[class*="whatsapp" i],[id*="whatsapp" i] {display:none!important}
+.kr-bonus-launcher{right:18px!important;bottom:max(18px,env(safe-area-inset-bottom))!important;width:76px!important;height:76px!important;border:3px solid #ffd34e!important;border-radius:50%!important;background:radial-gradient(circle at 35% 25%,#fff0a1,#f7a800 65%,#ad6000)!important;box-shadow:0 0 0 5px #ffd34e25,0 8px 30px #0009,0 0 24px #ffcb3780!important;animation:krFloat 2.8s ease-in-out infinite;overflow:visible!important}
+.kr-bonus-launcher img{width:100%!important;height:100%!important;border-radius:50%;object-fit:cover}
+.kr-bonus-launcher span{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);background:#151515;color:#ffdf64;border:1px solid #ffca37;border-radius:20px;padding:2px 9px;line-height:17px;white-space:nowrap;font-size:11px}
+@keyframes krFloat{50%{transform:translateY(-6px)}}
+.kr-bonus-dialog{width:480px!important;max-width:calc(100% - 20px)!important;border:2px solid #f3bc36!important;border-radius:24px!important;background:radial-gradient(ellipse at 50% 0%,#46331a 0%,#191919 55%,#101010 100%)!important;box-shadow:0 24px 90px #000d,0 0 40px #e8ac2722!important;padding:30px 18px 24px!important}
+.kr-bonus-dialog::backdrop{background:#000c;backdrop-filter:blur(7px)}
+.kr-bonus-eyebrow{color:#ffda62!important;letter-spacing:2px;font-weight:900}
+.kr-bonus-heading{font-size:clamp(24px,5vw,34px)!important;color:#fff4d1;text-shadow:0 2px 18px #ffc13c55}
+.kr-bonus-prizes{gap:7px!important;margin:12px 0 18px!important}
+.kr-bonus-prizes span{background:#ffd24a16;border:1px solid #e7b94366;border-radius:20px;padding:5px 9px;color:#ffdf81}
+.kr-bonus-wheel-wrap{width:min(330px,78vw)!important;filter:drop-shadow(0 10px 22px #000a)}
+.kr-bonus-wheel-wrap::before{top:-15px!important;left:calc(50% - 16px)!important;border-left:16px solid transparent!important;border-right:16px solid transparent!important;border-top:32px solid #fff1a5!important;filter:drop-shadow(0 2px 3px #000);z-index:5!important}
+.kr-bonus-wheel{border:9px solid #eab83b!important;box-shadow:0 0 0 5px #71450b,0 0 0 9px #ffd86d,0 0 28px #ffce4a77;will-change:transform}
+.kr-bonus-wheel-center{width:66px!important;height:66px!important;background:radial-gradient(circle at 30% 25%,#fff3b4,#efaa19)!important;color:#4b2b03!important;border:5px solid #fff0ad!important;box-shadow:0 3px 12px #0008;font-size:24px!important}
+.kr-bonus-button{background:linear-gradient(180deg,#ffe98a,#f6bd2f 55%,#d68b09)!important;color:#301e00!important;border:1px solid #fff0a0!important;border-radius:30px!important;min-height:52px!important;width:245px!important;font-size:16px!important;box-shadow:0 5px 0 #8e5909,0 8px 22px #f7b82a55!important;transition:transform .2s,filter .2s}
+.kr-bonus-button:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-2px)}
+.kr-bonus-result{font-size:17px!important;color:#ffe18a!important}
+.kr-bonus-preview{background:#e8b23b12;border:1px solid #dcae4d55;border-radius:14px;padding:12px!important}
+.kr-bonus-close{color:#ffe19b!important}
+@media(max-width:640px){.kr-bonus-launcher{width:68px!important;height:68px!important;right:14px!important}.kr-bonus-wheel-wrap{width:min(290px,74vw)!important}}
+@media(prefers-reduced-motion:reduce){.kr-bonus-launcher{animation:none}}
