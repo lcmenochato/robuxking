@@ -15,7 +15,7 @@
   open.remove();
   const offer=document.createElement('dialog');
   offer.className='kr-offer-dialog';
-  offer.innerHTML='<button type="button" class="kr-offer-close" aria-label="Fechar">×</button><img class="kr-offer-brand" src="./images/kingdom-logo-corrigida.png" alt="Robux Kingdom"><h2>Roleta de bônus</h2><p>Você desbloqueou uma chance na roleta! Quer girar agora e ganhar Robux extra grátis na compra?</p><button type="button" class="kr-offer-yes">Quero girar a roleta</button><button type="button" class="kr-offer-no">Agora não</button>';
+  offer.innerHTML='<button type="button" class="kr-offer-close" aria-label="Fechar">×</button><img class="kr-offer-brand" src="https://i.postimg.cc/L50G5CsM/IMG-20261014-WA0041.jpg" alt="Robux Kingdom"><h2>Roleta de bônus</h2><p>Você desbloqueou uma chance na roleta! Quer girar agora e ganhar Robux extra grátis na compra?</p><button type="button" class="kr-offer-yes">Quero girar a roleta</button><button type="button" class="kr-offer-no">Agora não</button>';
   document.body.appendChild(offer);
   let pending=null, bypass=false, offered=false, bonus=0;
   function proceed(){const b=pending;pending=null;if(b){bypass=true;b.click();bypass=false;}}
