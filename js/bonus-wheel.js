@@ -20,26 +20,34 @@
     const bounds = dialog.getBoundingClientRect();
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
   });
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-  const tokens = getComputedStyle(document.documentElement);
-  const token = name => tokens.getPropertyValue(name).trim();
-  const size = 560, center = size / 2, radius = center;
+  const size = 600, center = size / 2, radius = 287;
   canvas.width = size; canvas.height = size;
   const segment = Math.PI * 2 / prizes.length;
+  const colors = ['#f5b82e','#1d1c20','#ffdb65','#333038','#e8a317'];
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
   prizes.forEach((prize, i) => {
     const start = -Math.PI / 2 + i * segment;
-    ctx.beginPath(); ctx.moveTo(center, center);
-    ctx.arc(center, center, radius, start, start + segment); ctx.closePath();
-    ctx.fillStyle = token('--wheel-' + (i + 1)); ctx.fill();
-    ctx.save(); ctx.translate(center, center); ctx.rotate(start + segment / 2);
-    ctx.translate(radius * .66, 0); ctx.rotate(Math.PI / 2);
-    ctx.fillStyle = token(i === 1 || i === 3 ? '--clean-text' : '--clean-on-accent');
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.font = '800 34px Arial, sans-serif'; ctx.fillText('+' + prize, 0, -8);
-    ctx.font = '600 18px Arial, sans-serif'; ctx.fillText('ROBUX', 0, 26);
+    const gradient = ctx.createRadialGradient(center,center,35,center,center,radius);
+    gradient.addColorStop(0, i % 2 ? '#484047' : '#fff0a0');
+    gradient.addColorStop(1, colors[i]);
+    ctx.beginPath(); ctx.moveTo(center,center); ctx.arc(center,center,radius,start,start+segment);ctx.closePath();
+    ctx.fillStyle=gradient;ctx.fill();
+    ctx.lineWidth=6;ctx.strokeStyle='#f9e5a0';ctx.stroke();
+    ctx.save();ctx.translate(center,center);ctx.rotate(start+segment/2);
+    ctx.translate(radius*.65,0);ctx.rotate(Math.PI/2);
+    ctx.shadowColor='#0009';ctx.shadowBlur=5;
+    ctx.fillStyle=i%2?'#ffe7a1':'#352106';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='900 44px Montserrat,Arial,sans-serif';ctx.fillText('+'+prize,0,-11);
+    ctx.font='800 19px Montserrat,Arial,sans-serif';ctx.fillText('ROBUX',0,30);
     ctx.restore();
   });
+  for(let i=0;i<30;i++){
+    const a=i*Math.PI*2/30;
+    ctx.beginPath();ctx.arc(center+275*Math.cos(a),center+275*Math.sin(a),4.5,0,Math.PI*2);
+    ctx.fillStyle='#fff5c4';ctx.fill();
+  }
   let spinning = false, rotation = 0;
   const showPrize = index => {
     result.textContent = 'Bônus sorteado: +' + prizes[index] + ' Robux';
