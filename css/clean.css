@@ -106,3 +106,26 @@ a[href*="wa.me"],a[href*="api.whatsapp.com"],a[href*="whatsapp.com"],[class*="wh
 .kr-bonus-close{color:#ffe19b!important}
 @media(max-width:640px){.kr-bonus-launcher{width:68px!important;height:68px!important;right:14px!important}.kr-bonus-wheel-wrap{width:min(290px,74vw)!important}}
 @media(prefers-reduced-motion:reduce){.kr-bonus-launcher{animation:none}}
+
+/* Roleta conforme referência enviada */
+.kr-bonus-launcher{display:none!important}
+.kr-offer-dialog,.kr-bonus-dialog{width:min(640px,calc(100% - 28px))!important;max-height:calc(100dvh - 35px)!important;border:1px solid #98721b!important;border-radius:14px!important;background:linear-gradient(#101010,#030303 40%)!important;color:#fff!important;text-align:center;padding:38px 26px 28px!important;box-shadow:0 0 0 9999px #0003,0 20px 70px #000a!important}
+.kr-offer-dialog::backdrop,.kr-bonus-dialog::backdrop{background:#000b!important}
+.kr-offer-dialog{position:fixed;inset:0;margin:auto}
+.kr-offer-logo,.kr-bonus-eyebrow{font-size:34px!important;font-weight:1000!important;color:#fff!important;text-shadow:2px 3px 0 #666;letter-spacing:-2px!important;margin:0 auto 32px!important}
+.kr-offer-logo small{display:block;font-size:18px;letter-spacing:2px}
+.kr-offer-dialog h2,.kr-bonus-heading{font-size:clamp(24px,5vw,34px)!important;color:#e7b11a!important;text-shadow:none!important;font-weight:900;margin:0 0 30px!important}
+.kr-offer-dialog p{font-size:clamp(17px,3.8vw,23px);color:#aaa;line-height:1.5;margin:0 0 18px}
+.kr-offer-yes,.kr-offer-no,.kr-bonus-button,.kr-bonus-continue{display:block;width:100%!important;max-width:none!important;border:1px solid #222!important;border-radius:9px!important;min-height:64px!important;margin:12px 0 0!important;font:800 20px Arial,sans-serif!important;cursor:pointer}
+.kr-offer-yes,.kr-bonus-button,.kr-bonus-continue{background:#e6ad14!important;color:#070707!important;box-shadow:none!important}
+.kr-offer-no{background:#080808;color:white;font-weight:500!important}
+.kr-offer-close{position:absolute;top:16px;right:18px;color:#ccc;background:none;border:0;font-size:30px;cursor:pointer}
+.kr-bonus-prizes{display:none!important}
+.kr-bonus-wheel-wrap{width:min(450px,76vw)!important;margin:26px auto 30px!important}
+.kr-bonus-wheel{border:7px solid #ab8020!important;box-shadow:0 0 18px #0d7d3d66!important}
+.kr-bonus-wheel-wrap::before{border-left:18px solid transparent!important;border-right:18px solid transparent!important;border-top:0!important;border-bottom:31px solid #e8b31b!important;top:-18px!important;left:calc(50% - 18px)!important}
+.kr-bonus-wheel-center{background:#101010!important;color:#e7b11a!important;border:5px solid #aa801b!important}
+.kr-bonus-button svg{display:none}
+.kr-bonus-continue[hidden],.kr-bonus-button[hidden]{display:none!important}
+.kr-free-bonus{padding:14px;border:1px solid #e5b21e;border-radius:10px;color:#ffda5d;margin:12px 0}.kr-free-bonus strong{float:right;color:#4ade80}
+@media(max-width:640px){.kr-offer-dialog,.kr-bonus-dialog{padding:32px 20px!important}.kr-bonus-wheel-wrap{width:min(450px,75vw)!important}}
