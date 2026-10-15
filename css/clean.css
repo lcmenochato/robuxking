@@ -133,3 +133,81 @@ a[href*="wa.me"],a[href*="api.whatsapp.com"],a[href*="whatsapp.com"],[class*="wh
 /* Identidade oficial Kingdom na oferta e na roleta */
 .kr-offer-brand,.kr-bonus-brand{display:block;width:min(320px,78%);height:auto;max-height:110px;object-fit:contain;margin:0 auto 26px!important}
 .kr-bonus-eyebrow{display:none!important}
+
+/* Cards Kingdom: proporções, brilho e tipografia inspirados no vídeo enviado */
+#produtos .container{max-width:1250px!important}
+#produtos .grid{gap:clamp(14px,2.4vw,26px)!important}
+#produtos [data-slot="card"]{
+  position:relative;background:#080808!important;
+  border:2px solid #a47c1b!important;border-radius:19px!important;
+  overflow:hidden;gap:0!important;min-width:0;
+  box-shadow:inset 0 0 0 1px #f7c33c25,0 0 0 1px #e9ad191b,0 8px 25px #000b!important;
+  transition:border-color .35s,box-shadow .35s,transform .35s!important;
+  animation:krCardGlow 3.8s ease-in-out infinite;
+}
+#produtos [data-slot="card"]:nth-child(2n){animation-delay:-1.9s}
+#produtos [data-slot="card"]:hover{
+  transform:translateY(-5px)!important;border-color:#ffd54e!important;
+  box-shadow:0 0 15px #f6c33277,0 0 30px #e8a71940,0 16px 32px #000b!important
+}
+@keyframes krCardGlow{
+  0%,100%{box-shadow:inset 0 0 0 1px #ffd03b26,0 0 5px #edaf2a35,0 8px 24px #0009}
+  50%{box-shadow:inset 0 0 0 1px #ffdf715c,0 0 14px #e6ac4366,0 0 23px #d69b222b,0 8px 24px #0009}
+}
+#produtos [data-slot="card"]>div:first-child{
+  aspect-ratio:0.95!important;min-height:220px!important;
+  border-radius:16px 16px 0 0!important;overflow:hidden
+}
+#produtos [data-slot="card"]>div:first-child img{
+  object-fit:cover!important;object-position:center top!important;
+  transition:transform .65s ease!important
+}
+#produtos [data-slot="card"]:hover>div:first-child img{transform:scale(1.07)!important}
+#produtos [data-slot="card"]>div:first-child .animate-shine{
+  display:block!important;animation:krShimmer 5s ease-in-out infinite!important
+}
+@keyframes krShimmer{
+  0%,60%,100%{transform:translateX(-170%) skewX(-20deg);opacity:0}
+  75%{opacity:.7}95%{transform:translateX(170%) skewX(-20deg);opacity:0}
+}
+#produtos [data-slot="card"]>div:nth-child(2){
+  padding:clamp(12px,2vw,20px)!important;
+  gap:clamp(9px,1.5vw,14px)!important;
+}
+#produtos [data-slot="card"] p,
+#produtos [data-slot="card"] button,
+#produtos [data-slot="card"] strong,
+#produtos [data-slot="card"] span{font-family:Montserrat,Arial,sans-serif!important}
+#produtos [data-slot="card"]>div:first-child p:nth-child(2){
+  font-size:clamp(40px,6vw,72px)!important;
+  font-weight:900!important;line-height:1.05!important;
+  color:#fff!important;text-shadow:0 3px 8px #0008
+}
+#produtos [data-slot="card"]>div:first-child p:first-child,
+#produtos [data-slot="card"]>div:first-child p:last-child{
+  font-size:clamp(11px,1.5vw,18px)!important;
+  letter-spacing:.2em!important;font-weight:400!important
+}
+#produtos [data-slot="card"] button{
+  min-height:48px!important;border-radius:11px!important;
+  background:#e7b11a!important;color:#080808!important;
+  font-size:clamp(12px,1.7vw,16px)!important;font-weight:800!important;
+  box-shadow:0 5px 14px #f3b71c44!important;
+  transition:transform .2s,box-shadow .2s,filter .2s!important
+}
+#produtos [data-slot="card"] button:hover{
+  filter:brightness(1.1);transform:translateY(-2px)!important;
+  box-shadow:0 5px 20px #ffd44788!important
+}
+@media(max-width:640px){
+  #produtos .container{padding-left:12px!important;padding-right:12px!important}
+  #produtos .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+  #produtos [data-slot="card"]{border-radius:16px!important}
+  #produtos [data-slot="card"]>div:first-child{aspect-ratio:.76!important;min-height:0!important}
+  #produtos [data-slot="card"]>div:nth-child(2){padding:11px!important;gap:10px!important}
+  #produtos [data-slot="card"]>div:first-child p:nth-child(2){font-size:clamp(34px,8vw,53px)!important}
+  #produtos [data-slot="card"] button{min-height:46px!important;padding:8px 5px!important;font-size:12px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #produtos [data-slot="card"],#produtos [data-slot="card"] .animate-shine{animation:none!important}
+}
