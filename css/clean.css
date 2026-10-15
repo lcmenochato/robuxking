@@ -248,3 +248,24 @@ body #produtos [data-slot="card"] .kr-discount-badge{background:#f5b21b!importan
 .kr-welcome-note{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;border:1px solid #8c6a20;border-radius:18px;padding:20px 24px;background:#c58c1310}
 .kr-welcome-note span{font-size:30px;color:#e8b01a}
 .kr-welcome-note p{font:500 clamp(14px,2vw,18px)/1.5 Montserrat,Inter,Arial,sans-serif;margin:0;color:#e7e7e7}
+
+/* Card de oferta em destaque da página inicial */
+.kr-feature{background:#050505;padding:28px 18px 42px;text-align:center;color:#fff}
+.kr-feature h2{font:900 clamp(30px,6vw,56px)/1.15 Montserrat,Inter,Arial,sans-serif;margin:0 0 34px;letter-spacing:-1px}
+.kr-feature h2 span{color:#edb71e}
+.kr-feature-frame{max-width:520px;margin:auto;padding:18px;border:3px solid #eee;border-radius:25px;box-shadow:0 0 12px #fff4}
+.kr-feature-card{overflow:hidden;background:#090909;border:2px solid #e4b321;border-radius:24px;padding:0 0 16px;box-shadow:0 0 16px #e5af2470,inset 0 0 12px #dba52045;animation:krGoldPulse 3s ease-in-out infinite}
+.kr-feature-art{height:310px;position:relative;overflow:hidden}
+.kr-feature-art img{width:100%;height:100%;object-fit:cover;display:block}
+.kr-feature-art-shade{position:absolute;inset:0;background:linear-gradient(transparent,#0009)}
+.kr-feature-art-title{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-shadow:0 4px 10px #000}
+.kr-feature-art-title small{font-size:20px;letter-spacing:8px}
+.kr-feature-art-title strong{font:1000 clamp(70px,13vw,100px)/1.05 Montserrat,Arial,sans-serif}
+.kr-feature-art-title b{font-size:28px;letter-spacing:6px;color:#e8b31c}
+.kr-feature-info{display:flex;justify-content:space-around;align-items:center;gap:10px;padding:16px}
+.kr-feature-quantity{display:flex;flex-direction:column;text-align:left;color:#edbb25}.kr-feature-quantity strong{font-size:28px}.kr-feature-quantity span{color:#eee;font-size:14px}
+.kr-feature-price{font-size:clamp(29px,7vw,41px);font-weight:900;color:#3bdf5c;text-shadow:0 0 8px #29d94b55}
+.kr-feature-buy{display:block;width:calc(100% - 28px);margin:0 14px;background:#f3bd1c;color:#090909;border:0;border-radius:13px;padding:15px 10px;font-size:clamp(16px,3.7vw,21px);font-weight:900;cursor:pointer}
+.kr-feature-buy:hover{filter:brightness(1.1)}
+@media(max-width:480px){.kr-feature-frame{padding:12px}.kr-feature-art{height:245px}.kr-feature-art-title strong{font-size:67px}.kr-feature h2{margin-bottom:24px}}
+@media(prefers-reduced-motion:reduce){.kr-feature-card{animation:none}}
