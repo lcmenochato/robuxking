@@ -1,7 +1,7 @@
 /* Roleta demonstrativa independente. Não altera preços, pedidos ou pagamentos. */
 (() => {
   'use strict';
-  const prizes = [100, 250, 300, 400, 500];
+  const prizes = [50, 100, 200, 275];
   const canvas = document.getElementById('krBonusWheel');
   const button = document.getElementById('krBonusSpin');
   const result = document.getElementById('krBonusResult');
@@ -12,7 +12,37 @@
   const preview = document.getElementById('krBonusPreview');
   const cartValue = document.getElementById('krBonusCartValue');
   if (!dialog || !open || !close || !preview || !cartValue) return;
-  open.addEventListener('click', () => dialog.showModal());
+  open.remove();
+  const offer=document.createElement('dialog');
+  offer.className='kr-offer-dialog';
+  offer.innerHTML='<button type="button" class="kr-offer-close" aria-label="Fechar">×</button><div class="kr-offer-logo">ROBUX <small>EMPIRE</small></div><h2>Roleta de bônus</h2><p>Você desbloqueou uma chance na roleta! Quer girar agora e ganhar Robux extra grátis na compra?</p><button type="button" class="kr-offer-yes">Quero girar a roleta</button><button type="button" class="kr-offer-no">Agora não</button>';
+  document.body.appendChild(offer);
+  let pending=null, bypass=false, offered=false, bonus=0;
+  function proceed(){const b=pending;pending=null;if(b){bypass=true;b.click();bypass=false;}}
+  function dismiss(){offer.close();proceed();}
+  offer.querySelector('.kr-offer-no').onclick=dismiss;
+  offer.querySelector('.kr-offer-close').onclick=dismiss;
+  offer.querySelector('.kr-offer-yes').onclick=()=>{offer.close();dialog.showModal();};
+  document.addEventListener('click',e=>{
+    if(bypass||offered||!e.target.closest)return;
+    const b=e.target.closest('button');
+    if(!b||!b.textContent.includes('Adicionar ao'))return;
+    e.preventDefault();e.stopImmediatePropagation();
+    pending=b;offered=true;offer.showModal();
+  },true);
+  window.addEventListener('kr-bonus-awarded',e=>{bonus=e.detail||0;});
+  const continueButton=document.createElement('button');
+  continueButton.type='button';continueButton.className='kr-bonus-continue';continueButton.textContent='Continuar para o carrinho';continueButton.hidden=true;
+  dialog.appendChild(continueButton);
+  continueButton.onclick=()=>{dialog.close();proceed();};
+  dialog.addEventListener('close',()=>{if(pending)proceed();});
+  function addBonusToCart(n){
+    const cartDialog=document.getElementById('krCheckoutModal');
+    // O bônus aparece no carrinho como item gratuito; a liberação real depende do sistema de entrega.
+    const show=()=>{if(!cartDialog)return;const body=cartDialog.querySelector('.kr-cart-body');if(body&&!body.querySelector('.kr-free-bonus'))body.insertAdjacentHTML('beforeend','<div class="kr-free-bonus">🎁 BÔNUS DA ROLETA: +'+n+' Robux <strong>GRÁTIS</strong></div>');};
+    const observer=new MutationObserver(show);if(cartDialog)observer.observe(cartDialog,{childList:true,subtree:false});
+    show();
+  }
   close.addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => open.focus());
   dialog.addEventListener('click', event => {
@@ -23,13 +53,13 @@
   const size = 600, center = size / 2, radius = 287;
   canvas.width = size; canvas.height = size;
   const segment = Math.PI * 2 / prizes.length;
-  const colors = ['#f5b82e','#1d1c20','#ffdb65','#333038','#e8a317'];
+  const colors = ['#1fc45e','#f2b900','#367ff1','#a34cf2'];
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
   prizes.forEach((prize, i) => {
     const start = -Math.PI / 2 + i * segment;
     const gradient = ctx.createRadialGradient(center,center,35,center,center,radius);
-    gradient.addColorStop(0, i % 2 ? '#484047' : '#fff0a0');
+    gradient.addColorStop(0, colors[i]);
     gradient.addColorStop(1, colors[i]);
     ctx.beginPath(); ctx.moveTo(center,center); ctx.arc(center,center,radius,start,start+segment);ctx.closePath();
     ctx.fillStyle=gradient;ctx.fill();
@@ -37,13 +67,13 @@
     ctx.save();ctx.translate(center,center);ctx.rotate(start+segment/2);
     ctx.translate(radius*.65,0);ctx.rotate(Math.PI/2);
     ctx.shadowColor='#0009';ctx.shadowBlur=5;
-    ctx.fillStyle=i%2?'#ffe7a1':'#352106';
+    ctx.fillStyle='#ffffff';
     ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.font='900 44px Montserrat,Arial,sans-serif';ctx.fillText('+'+prize,0,-11);
-    ctx.font='800 19px Montserrat,Arial,sans-serif';ctx.fillText('ROBUX',0,30);
+    ctx.font='900 52px Montserrat,Arial,sans-serif';ctx.fillText(prize,0,-11);
+    ctx.font='800 19px Montserrat,Arial,sans-serif';ctx.fillText('Robux',0,30);
     ctx.restore();
   });
-  for(let i=0;i<30;i++){
+  for(let i=0;i<0;i++){
     const a=i*Math.PI*2/30;
     ctx.beginPath();ctx.arc(center+275*Math.cos(a),center+275*Math.sin(a),4.5,0,Math.PI*2);
     ctx.fillStyle='#fff5c4';ctx.fill();
@@ -53,7 +83,8 @@
     result.textContent = 'Bônus sorteado: +' + prizes[index] + ' Robux';
     cartValue.textContent = '+' + prizes[index] + ' Robux · R$ 0,00';
     preview.hidden = false;
-    button.querySelector('span').textContent = 'Girar novamente';
+    button.querySelector('span').textContent = 'Bônus sorteado';
+    button.hidden=true;continueButton.hidden=false;addBonusToCart(prizes[index]);
     button.disabled = false;
     canvas.setAttribute('aria-label', 'Resultado de prévia: +' + prizes[index] + ' Robux');
   };
@@ -67,13 +98,13 @@
     return Math.floor(Math.random() * prizes.length);
   };
   button.addEventListener('click', async () => {
-    if (spinning) return;
+    if (spinning || bonus) return;
     spinning = true; button.disabled = true;
     button.querySelector('span').textContent = 'Girando…';
     result.textContent = '';
     const index = randomIndex();
     const previous = rotation;
-    rotation = Math.ceil(rotation / 360) * 360 + 360 * 5 + 360 - (index * 72 + 36);
+    rotation = Math.ceil(rotation / 360) * 360 + 360 * 5 - (index * 90 + 45);
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const animation = canvas.animate(
       [{ transform: 'rotate(' + previous + 'deg)' }, { transform: 'rotate(' + rotation + 'deg)' }],
@@ -81,6 +112,6 @@
     );
     try { await animation.finished; } catch { /* Mantém o resultado se a animação for interrompida. */ }
     canvas.style.transform = 'rotate(' + rotation + 'deg)'; animation.cancel();
-    showPrize(index); spinning = false;
+    showPrize(index); bonus=prizes[index]; spinning = false;
   });
 })();
