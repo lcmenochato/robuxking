@@ -129,3 +129,7 @@ a[href*="wa.me"],a[href*="api.whatsapp.com"],a[href*="whatsapp.com"],[class*="wh
 .kr-bonus-continue[hidden],.kr-bonus-button[hidden]{display:none!important}
 .kr-free-bonus{padding:14px;border:1px solid #e5b21e;border-radius:10px;color:#ffda5d;margin:12px 0}.kr-free-bonus strong{float:right;color:#4ade80}
 @media(max-width:640px){.kr-offer-dialog,.kr-bonus-dialog{padding:32px 20px!important}.kr-bonus-wheel-wrap{width:min(450px,75vw)!important}}
+
+/* Identidade oficial Kingdom na oferta e na roleta */
+.kr-offer-brand,.kr-bonus-brand{display:block;width:min(320px,78%);height:auto;max-height:110px;object-fit:contain;margin:0 auto 26px!important}
+.kr-bonus-eyebrow{display:none!important}
