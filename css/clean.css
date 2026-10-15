@@ -233,3 +233,8 @@ body #produtos [data-slot="card"] .kr-discount-badge{background:#f5b21b!importan
 }
 @media(max-width:380px){body #produtos [data-slot="card"]{min-height:415px!important}body #produtos [data-slot="card"] > div:first-child{height:225px!important;min-height:225px!important}}
 @media(prefers-reduced-motion:reduce){body #produtos [data-slot="card"]{animation:none!important}}
+
+/* Corrige o alinhamento do bônus grátis no carrinho mobile */
+#krCheckoutModal .kr-free-bonus{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;flex-wrap:wrap!important;padding:16px 18px!important;line-height:1.45!important;min-height:72px;box-sizing:border-box!important;overflow-wrap:anywhere!important}
+#krCheckoutModal .kr-free-bonus strong{float:none!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;white-space:nowrap!important;margin-left:auto!important;color:#4ade80!important;font-size:16px!important;line-height:1.2!important}
+@media(max-width:640px){#krCheckoutModal .kr-free-bonus{font-size:14px!important;padding:14px!important;gap:8px!important}#krCheckoutModal .kr-free-bonus strong{font-size:14px!important}}
