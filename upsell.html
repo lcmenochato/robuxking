@@ -457,7 +457,7 @@
         const raw = storage.getItem("kingdom_original_purchase");
         if (!raw) continue;
         const parsed = JSON.parse(raw);
-        if (parsed && typeof parsed === "object") return parsed;
+        if (parsed && typeof parsed === "object" && /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(normalizeEmail(parsed.email))) return parsed;
       } catch (_) {}
     }
     return {};
