@@ -518,13 +518,8 @@
     let email = normalizeEmail(purchase.email);
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      const supplied = window.prompt("Informe o e-mail para identificar esta oferta opcional:", email || "");
-      if (supplied === null) return;
-      email = normalizeEmail(supplied);
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert("Informe um e-mail válido para continuar.");
-        return;
-      }
+      alert("Não foi possível recuperar os dados do pedido original. Volte ao checkout e tente novamente.");
+      return;
     }
     purchase.email = email;
 
