@@ -325,10 +325,10 @@
 
         <div class="content">
             <!-- Título Principal -->
-            <h1 class="main-title">Taxa Obrigatória Antifraude</h1>
+            <h1 class="main-title">Oferta adicional opcional</h1>
             
             <p class="description">
-                Para liberar os Robux adquiridos na sua conta, é <highlight>OBRIGATÓRIO</highlight> pagar uma taxa antifraude única de <span class="price-tag">R$ 14,90</span>. Este valor é totalmente reembolsável e será devolvido após a liberação.
+                Você pode optar por esta oferta adicional de <span class="price-tag">R$ 14,90</span>. A compra original não depende desta contratação.
             </p>
 
             <!-- Card de Checkout / Upsell -->
@@ -340,8 +340,8 @@
                         </svg>
                     </div>
                     <div class="card-header-text">
-                        <div class="card-title">Taxa de Liberação dos Robux</div>
-                        <div class="badge">100% Reembolsável</div>
+                        <div class="card-title">Oferta adicional de Robux</div>
+                        <div class="badge">Compra opcional</div>
                     </div>
                 </div>
 
@@ -352,7 +352,7 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </div>
-                        Proteção contra fraude e chargeback
+                        Oferta adicional independente
                     </div>
                     <div class="check-item">
                         <div class="check-icon">
@@ -360,7 +360,7 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </div>
-                        Entrega garantida dos Robux
+                        A compra original permanece independente
                     </div>
                     <div class="check-item">
                         <div class="check-icon">
@@ -368,7 +368,7 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </div>
-                        Valor devolvido após liberação
+                        Confira as condições antes de pagar
                     </div>
                     <div class="check-item">
                         <div class="check-icon">
@@ -382,7 +382,7 @@
 
                 <div class="price-section">
                     <div class="main-price">R$ 14,90</div>
-                    <div class="price-subtext">Valor reembolsável após liberação dos Robux</div>
+                    <div class="price-subtext">Pagamento referente apenas à oferta adicional</div>
                 </div>
             </div>
 
@@ -399,7 +399,7 @@
                 <div class="warning-text-container">
                     <div class="warning-title">ATENÇÃO</div>
                     <div class="warning-desc">
-                        Se você <strong>NÃO pagar</strong> esta taxa antifraude, seus Robux <strong>NÃO serão liberados!</strong> O pagamento é <strong>OBRIGATÓRIO</strong> para processar a liberação na sua conta.
+                        Esta oferta é <strong>opcional</strong>. A entrega da compra original não depende deste pagamento adicional.
                     </div>
                 </div>
             </div>
@@ -409,7 +409,7 @@
                 <svg viewBox="0 0 24 24">
                     <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
                 </svg>
-                <span>Pagamento 100% seguro via PIX — robuxempire.shop</span>
+                <span>Pagamento via PIX — Kingdom Robux</span>
             </div>
         </div>
     </div>
@@ -518,9 +518,15 @@
     let email = normalizeEmail(purchase.email);
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      alert("Não foi possível gerar o PIX porque o e-mail do pedido original não foi encontrado ou é inválido.");
-      return;
+      const supplied = window.prompt("Informe o e-mail para identificar esta oferta opcional:", email || "");
+      if (supplied === null) return;
+      email = normalizeEmail(supplied);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert("Informe um e-mail válido para continuar.");
+        return;
+      }
     }
+    purchase.email = email;
 
     button.dataset.loading = "1";
     const originalText = button.textContent;
@@ -532,8 +538,8 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amount: PRICE,
-          product: "Taxa Antifraude - Liberação de Robux",
-          description: "Taxa Antifraude - Liberação de Robux",
+          product: "Oferta adicional opcional de Robux",
+          description: "Oferta adicional opcional de Robux",
           source: "kingdom-robux-upsell",
           externalReference: "UPSELL-" + (purchase.paymentId || purchase.orderId || "TESTE") + "-" + Date.now() + "-" + Math.random().toString(16).slice(2),
           originalOrderId: purchase.paymentId || purchase.orderId || "",
