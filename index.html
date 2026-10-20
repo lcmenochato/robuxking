@@ -386,7 +386,9 @@ async function createPix(){
   const qr=d.qrcodeUrl||d.qrCodeUrl||d.qr_url||d.data?.qrcodeUrl||d.payment?.qrcodeUrl||'';
   const eventId=(current?.eventId||crypto.randomUUID());
   current={...current,id,email,user,amount,upsells,eventId};
-  try{sessionStorage.setItem('kingdom_original_purchase',JSON.stringify({paymentId:id,orderId:id,email,username:user,name:current.name,price:amount,amount,product:current.name,eventId}));}catch{}
+  const originalPurchase=JSON.stringify({paymentId:id,orderId:id,email,username:user,name:current.name,price:amount,amount,product:current.name,eventId});
+  try{sessionStorage.setItem('kingdom_original_purchase',originalPurchase);}catch{}
+  try{localStorage.setItem('kingdom_original_purchase',originalPurchase);}catch{}
   trackTikTokEvent('AddPaymentInfo',{content_type:'product',content_id:current.name,content_name:current.name,quantity:1,currency:'BRL',value:Number(amount)},eventId); renderPix(copy,qr); startPolling(id);
  }catch(e){
   document.getElementById('krCheckoutModal').innerHTML=`<div class="kr-head"><h2>Erro</h2><button class="kr-close" id="krClose">×</button></div><div class="kr-body"><p>${e.message||'Erro ao gerar PIX.'}</p><button class="kr-btn" id="krRetry">Tentar novamente</button></div>`;
